@@ -11,12 +11,7 @@ from operatorUi import Ui_Dialog
 from PyQt4 import QtCore, QtGui
 import socket
 import json
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
+import sys
 
 
 # 主控面板负责和BCI2000通信，告知控制模式，启动新任务等
@@ -36,6 +31,7 @@ class MainWindow(QtGui.QDialog):
         QtCore.QObject.connect(self.ui.bt_cmd_model, QtCore.SIGNAL("clicked()"), self.bt_cmd_model_slot)
         QtCore.QObject.connect(self.ui.bt_new_trial, QtCore.SIGNAL("clicked()"), self.bt_new_trial_slot)
         QtCore.QObject.connect(self.ui.bt_cease_current_task, QtCore.SIGNAL("clicked()"), self.bt_cease_current_task_slot)
+        QtCore.QObject.connect(self.ui.bt_train_mode, QtCore.SIGNAL("clicked()"), self.bt_train_model_slot)
         
         # 人工干预
         QtCore.QObject.connect(self.ui.bt_forward, QtCore.SIGNAL("clicked()"), self.bt_forward_slot)
@@ -70,10 +66,16 @@ class MainWindow(QtGui.QDialog):
             pass
 
 
-        
         self.sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-        
+
         self.mode = 'cmd'
+        
+    def bt_train_model_slot(self):
+        self.mode = 'train'
+        self.update_addr()
+        self.sock.sendto('**TRAIN_MODE',self.main_addr)
+        self.sock.sendto('**TRAIN_MODE',self.BCI2000_addr)
+        print '>>> train mode'
 
     def write_addr(self):
         main_text = str(self.ui.main_pro_addr.text())
@@ -83,45 +85,49 @@ class MainWindow(QtGui.QDialog):
         with open(os.path.join(root_dir, 'addr.txt'), 'w') as f:
             buf = json.dumps({'wc': wc_text, 'main': main_text, 'bci': bci_text})
             f.write(buf)
+        print '>>> save addrs'
 
 
     def bt_forward_slot(self):
         self.update_addr()
         self.sock.sendto('##pushtask**manul**forward',self.wc_addr)
+        print '>>> forward'
         
     def bt_stop_slot(self):
         self.update_addr()
         self.sock.sendto('##stop',self.wc_addr)
+        print '>>> stop'
     
     def bt_reverse_slot(self):
         self.update_addr()
-        # self.bt_stop_slot()
-        # time.sleep(0.2)
         self.sock.sendto('##pushtask**manul**backward',self.wc_addr)
+        print '>>> reverse'
         
     def bt_tleft_slot(self):
         self.update_addr()
-        # self.bt_stop_slot()
-        # time.sleep(0.2)
         self.sock.sendto('##pushtask**manul**left',self.wc_addr)
+        print '>>> left'
     
     def bt_tright_slot(self):
         self.update_addr()
         # self.bt_stop_slot()
         # time.sleep(0.2)
         self.sock.sendto('##pushtask**manul**right',self.wc_addr)
+        print '>>> right'
     
     def bt_rleft_slot(self):
         self.update_addr()
         # self.bt_stop_slot()
         # time.sleep(0.2)
         self.sock.sendto('##pushtask**manul**rleft',self.wc_addr)
+        print '>>> rotate left'
     
     def bt_rright_slot(self):
         self.update_addr()
         # self.bt_stop_slot()
         # time.sleep(0.2)
         self.sock.sendto('##pushtask**manul**rright',self.wc_addr)
+        print '>>> rotate right'
         
     def update_addr(self):
         main_text = str(self.ui.main_pro_addr.text())
@@ -139,48 +145,57 @@ class MainWindow(QtGui.QDialog):
     def bt_cease_current_task_slot(self):
         self.sock.sendto('**STOP_MOVING',self.main_addr)
         self.sock.sendto('##stop',self.wc_addr)
-        print 'STOP MOVING'
+        print '>>> interrupt current task'
 
     def bt_auto_model_slot(self):
         self.mode = 'auto'
         self.update_addr()
-        # self.sock.sendto('**AUTO_MODE',self.main_addr)
+        self.sock.sendto('**AUTO_MODE',self.main_addr)
         self.sock.sendto('**AUTO_MODE',self.BCI2000_addr)
-        print 'AUTO_MODE'
-    
+        print '>>> auto mode'
+
     def bt_cmd_model_slot(self):
         self.mode = 'cmd'
         self.update_addr()
 
-        # self.sock.sendto('**COMMAND_MODE',self.main_addr)
+        self.sock.sendto('**COMMAND_MODE',self.main_addr)
         self.sock.sendto('**COMMAND_MODE',self.BCI2000_addr)
-        print 'COMMAND_MODE'
+        print '>>> command mode'
     
     def bt_new_trial_slot(self):
         self.update_addr()
         self.sock.sendto('**NEW_TRIAL',self.BCI2000_addr)
-        print 'NEW_TRIAL'
+        print '>>> new trial'
 
     def bt_task0_slot(self):
-        pass
-
-    def bt_task0_slot(self):
-        pass
+        self.update_addr()
+        self.sock.sendto('**task0',self.BCI2000_addr)
+        print '>>> task0'
 
     def bt_task1_slot(self):
-        pass
+        self.update_addr()
+        self.sock.sendto('**task1',self.BCI2000_addr)
+        print '>>> task1'
 
     def bt_task2_slot(self):
-        pass
+        self.update_addr()
+        self.sock.sendto('**task2',self.BCI2000_addr)
+        print '>>> task2'
 
     def bt_task3_slot(self):
-        pass
+        self.update_addr()
+        self.sock.sendto('**task3',self.BCI2000_addr)
+        print '>>> task3'
 
     def bt_task4_slot(self):
-        pass
+        self.update_addr()
+        self.sock.sendto('**task4',self.BCI2000_addr)
+        print '>>> task4'
 
     def bt_task5_slot(self):
-        pass
+        self.update_addr()
+        self.sock.sendto('**task5',self.BCI2000_addr)
+        print '>>> task5'
 
 
 if __name__ == "__main__":

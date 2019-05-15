@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>504</width>
-    <height>514</height>
+    <width>395</width>
+    <height>455</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,34 +80,6 @@
         <string>任务分发</string>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="2" column="1" colspan="2">
-         <widget class="QPushButton" name="bt_task1">
-          <property name="text">
-           <string>任务1</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1" colspan="2">
-         <widget class="QPushButton" name="bt_task3">
-          <property name="text">
-           <string>任务3</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="bt_task0">
-          <property name="text">
-           <string>任务0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="bt_task2">
-          <property name="text">
-           <string>任务2</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QPushButton" name="bt_auto_model">
           <property name="text">
@@ -115,38 +87,73 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1" colspan="2">
+        <item row="0" column="1">
          <widget class="QPushButton" name="bt_cmd_model">
           <property name="text">
            <string>命令模式</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="bt_task4">
+        <item row="1" column="0" colspan="2">
+         <widget class="QPushButton" name="bt_train_mode">
           <property name="text">
-           <string>任务4</string>
+           <string>训练模式</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1" colspan="2">
-         <widget class="QPushButton" name="bt_task5">
-          <property name="text">
-           <string>任务5</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QPushButton" name="bt_new_trial">
           <property name="text">
            <string>新一轮控制准备</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="1" colspan="2">
+        <item row="2" column="1">
          <widget class="QPushButton" name="bt_cease_current_task">
           <property name="text">
            <string>中断当前任务</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QPushButton" name="bt_task0">
+          <property name="text">
+           <string>任务0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="bt_task1">
+          <property name="text">
+           <string>任务1</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="bt_task2">
+          <property name="text">
+           <string>任务2</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="bt_task3">
+          <property name="text">
+           <string>任务3</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="bt_task4">
+          <property name="text">
+           <string>任务4</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QPushButton" name="bt_task5">
+          <property name="text">
+           <string>任务5</string>
           </property>
          </widget>
         </item>
