@@ -157,6 +157,28 @@ class MobileRobot():
         [self.border_off(k) for k in self.commands_cue]          # 重置边框
         [k.show() for k in self.commands_cue]               # 显示命令块
 
+
+        if self.STIM_CODE >= 0 and self.STIM_CODE < 5:      # 刷刺激块
+            self.P3_sti.position = self.command_pos[self.STIM_CODE]
+            self.P3_sti.reset()
+            self.P3_sti.visible = True
+            self.P3_sti.show()
+        else:
+            self.P3_sti.visible = False
+            self.P3_sti.reset()
+
+        if self.current_task >= 0:
+            self.commands_cue[self.current_task].borderon = True  # 标识当前的分类结果
+            self.commands_cue[self.current_task].reset()
+            self.commands_cue[self.current_task].show()
+            
+    def train_scr_update(self):
+        for st in self.command_cue:         #重置边框颜色
+            st.bordercolor = (255,0,0)
+            st.borderon = False
+            st.reset()
+            st.show()
+
         if self.assign_task > -1:    # 有训练任务
             self.commands_cue[self.assign_task].bordercolor = (0,255,0)
             self.commands_cue[self.assign_task].borderon = True  # 标识当前训练任务
