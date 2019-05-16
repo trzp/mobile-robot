@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding:utf-8
 
-HOST_IP = '192.168.1.1'
+HOST_IP = '192.168.1.3'
 # HOST_IP = '127.0.0.1'
 
 WC_ADDR = (HOST_IP,9097)
