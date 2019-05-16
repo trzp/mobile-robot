@@ -18,6 +18,9 @@ import sys
 # 和weehlchair通信，直接干预
 
 
+# 任务0，1，2，3，4，5显示的时从0开始，是为了和gui对应。实际发送给bci2000的数字是1，2，3，4，5，6
+
+
 class MainWindow(QtGui.QDialog): 
 
     def __init__(self,parent=None):
@@ -143,8 +146,10 @@ class MainWindow(QtGui.QDialog):
         self.wc_addr = (wc_addr[0],int(wc_addr[1]))
         
     def bt_cease_current_task_slot(self):
-        self.sock.sendto('**STOP_MOVING',self.main_addr)
+        self.sock.sendto('**cease_task',self.main_addr)
         self.sock.sendto('##stop',self.wc_addr)
+        self.sock.sendto('**completed',self.BCI2000_addr)
+        
         print '>>> interrupt current task'
 
     def bt_auto_model_slot(self):
@@ -169,32 +174,32 @@ class MainWindow(QtGui.QDialog):
 
     def bt_task0_slot(self):
         self.update_addr()
-        self.sock.sendto('**task0',self.BCI2000_addr)
+        self.sock.sendto('**task1',self.BCI2000_addr)
         print '>>> task0'
 
     def bt_task1_slot(self):
         self.update_addr()
-        self.sock.sendto('**task1',self.BCI2000_addr)
+        self.sock.sendto('**task2',self.BCI2000_addr)
         print '>>> task1'
 
     def bt_task2_slot(self):
         self.update_addr()
-        self.sock.sendto('**task2',self.BCI2000_addr)
+        self.sock.sendto('**task3',self.BCI2000_addr)
         print '>>> task2'
 
     def bt_task3_slot(self):
         self.update_addr()
-        self.sock.sendto('**task3',self.BCI2000_addr)
+        self.sock.sendto('**task4',self.BCI2000_addr)
         print '>>> task3'
 
     def bt_task4_slot(self):
         self.update_addr()
-        self.sock.sendto('**task4',self.BCI2000_addr)
+        self.sock.sendto('**task5',self.BCI2000_addr)
         print '>>> task4'
 
     def bt_task5_slot(self):
         self.update_addr()
-        self.sock.sendto('**task5',self.BCI2000_addr)
+        self.sock.sendto('**task6',self.BCI2000_addr)
         print '>>> task5'
 
 
