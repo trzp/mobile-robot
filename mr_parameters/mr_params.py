@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+#coding:utf-8
+
+HOST_IP = '192.168.1.1'
+# HOST_IP = '127.0.0.1'
+
+WC_ADDR = (HOST_IP,9097)
+MAIN_ADDR = (HOST_IP,9098)
+BCI2000_ADDR = (HOST_IP,9099)
+SCREEN_SIZE = (1024,640)
+X_RATIO = 1024/640. 
+Y_RATIO = 640/480.
