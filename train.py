@@ -26,7 +26,7 @@ class MobileRobot():
         # yolo initialize
         self.yolo = Yolo_Pro()
         y_ = multiprocessing.Process(target=yolo_pro, args=(self.yolo.args,))
-        # y_.start()
+        y_.start()
 
         
         # flag initilize
