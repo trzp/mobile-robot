@@ -29,7 +29,7 @@ class MobileRobot():
         # tracker initialize
         self.track = TrackerPro()
         t_ = multiprocessing.Process(target=tracker_pro, args=(self.track.args,))
-        # t_.start()
+        t_.start()
 
         # yolo initialize
         self.yolo = Yolo_Pro()
