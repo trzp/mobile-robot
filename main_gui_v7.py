@@ -173,10 +173,12 @@ class MobileRobot():
 
         # 当前有任务
         elif self.current_task >= 0:
-            x,y,w,h = box = self.rm_client.update_task()
+            box = self.rm_client.update_task()
             if box is not None:
-            pygame.draw.rect(self.scr, (255, 255, 0),
-                             ((int(x * X_RATIO), int(y * Y_RATIO)), (int(w * X_RATIO), int(h * Y_RATIO))), 2)
+                x,y,w,h = box
+                if box is not None:
+                    pygame.draw.rect(self.scr, (255, 255, 0),
+                                 ((int(x * X_RATIO), int(y * Y_RATIO)), (int(w * X_RATIO), int(h * Y_RATIO))), 2)
         else:
             pass
 
