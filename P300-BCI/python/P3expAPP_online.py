@@ -222,7 +222,8 @@ class BciApplication(BciGenericApplication):
                     self.jump_res_2_pre = True
                 else:
                     self.jump_res_2_action = True
-                    self.action_num = cr - 1
+                    # self.action_num = cr - 1
+                    self.action_num = self.currenttask - 1  #总是执行正确的命令
         
         if self.in_phase('resdisp'):
             if self.jump_res_2_action:
