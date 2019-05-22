@@ -118,10 +118,11 @@ class MobileRobot():
             st.show()
 
         if self.current_task > -1:
-            self.commands_cue[self.current_task].bordercolor = (0,255,0)
-            self.commands_cue[self.current_task].borderon = True  # 标识当前训练任务
-            self.commands_cue[self.current_task].reset()
-            self.commands_cue[self.current_task].show()
+            if self.current_task < 5:
+                self.commands_cue[self.current_task].bordercolor = (0,255,0)
+                self.commands_cue[self.current_task].borderon = True  # 标识当前训练任务
+                self.commands_cue[self.current_task].reset()
+                self.commands_cue[self.current_task].show()
 
         if self.STIM_CODE >= 0 and self.STIM_CODE < 5:      # 刷刺激块
             self.P3_sti.position = self.command_pos[self.STIM_CODE]
